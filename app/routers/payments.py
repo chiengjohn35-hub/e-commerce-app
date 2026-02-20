@@ -57,8 +57,9 @@ async def create_checkout_session(payload: schemas.OrderReference, db: Session =
                 'quantity': 1,
             }],
             mode='payment',
-            success_url="http://localhost:5173/success?session_id={CHECKOUT_SESSION_ID}",
-            cancel_url="http://localhost:5173/cart",
+            success_url="https://e-commerce-store-wine-one.vercel.app/success?session_id={CHECKOUT_SESSION_ID}",
+            cancel_url="https://e-commerce-store-wine-one.vercel.app/cancel",
+
             # VERY IMPORTANT: This links the Stripe payment to your DB order
             metadata={"order_id": str(order.id)} 
         )
