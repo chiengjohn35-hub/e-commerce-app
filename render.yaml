@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: estore-backend
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+
+    envVars:
+      - key: SECRET_KEY
+        sync: false
+      - key: ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "30"
+      - key: DATABASE_URL
+        value: sqlite:///./app2.db

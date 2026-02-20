@@ -1,6 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from typing import Optional
+import os
+import uuid
+from fastapi import UploadFile, File, Form
+from fastapi.staticfiles import StaticFiles
+
 
 from .. import crud, schemas
 from ..db import get_db
@@ -8,37 +13,58 @@ from ..db import get_db
 router = APIRouter()
 
 
-@router.post("/", response_model=schemas.Product)
-def create_product(payload: schemas.ProductCreate, db: Session = Depends(get_db)):
-    """Create a new product (admin/demo use).
 
-    Accepts a `ProductCreate` payload and returns the created `Product`.
-    """
-    return crud.create_product(db, payload)
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # app/routers/
+APP_DIR = os.path.dirname(BASE_DIR)                    # app/
+STATIC_DIR = os.path.join(APP_DIR, "static")
+UPLOAD_DIR = os.path.join(STATIC_DIR, "uploads")
+
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+
+@router.post("/upload", response_model=schemas.Product)
+async def create_product_with_image(
+    name: str = Form(...),
+    price: float = Form(...),
+    image: UploadFile = File(...),
+    db: Session = Depends(get_db)
+):
+    # 1. Handle File Saving
+    ext = image.filename.split(".")[-1]
+    filename = f"{uuid.uuid4()}.{ext}"
+    file_path = os.path.join(UPLOAD_DIR, filename)
+
+    with open(file_path, "wb") as f:
+        f.write(await image.read())
+
+    image_url = f"/static/uploads/{filename}"
+
+    # 2. Prepare the Schema
+    product_data = schemas.ProductCreate(
+        name=name, 
+        price=price, 
+        image_url=image_url
+    )
+
+    # 3. Use CRUD to Save and Return
+    return crud.create_product(db, product_data)
 
 @router.get("/", response_model=schemas.PaginatedProducts)
-def list_products(q: Optional[str] = Query(None, description="search query"), page: int = 1, per_page: int = 20, db: Session = Depends(get_db)):
-    """List products with optional search and pagination.
-
-    Query parameters:
-    - `q`: text search over name and description
-    - `page`, `per_page`: pagination controls (1-based page)
-    Returns a `PaginatedProducts` object with items and metadata.
-    """
-    if page < 1:
-        page = 1
-    if per_page < 1:
-        per_page = 20
+def list_products(q: Optional[str] = Query(None), page: int = 1, per_page: int = 20, db: Session = Depends(get_db)):
+    if page < 1: page = 1
+    if per_page < 1: per_page = 20
     skip = (page - 1) * per_page
 
-    # Build search query if q provided using case-insensitive LIKE
-    query = db.query(crud.models.Product) if not q else db.query(crud.models.Product).filter(crud.models.Product.name.ilike(f"%{q}%") | crud.models.Product.description.ilike(f"%{q}%"))
+    # Updated: Filter by name only since description is removed
+    query = db.query(crud.models.Product)
+    if q:
+        query = query.filter(crud.models.Product.name.ilike(f"%{q}%"))
+    
     total = query.count()
     items = query.offset(skip).limit(per_page).all()
 
     return schemas.PaginatedProducts(items=items, total=total, page=page, per_page=per_page)
-
 
 @router.get("/{product_id}", response_model=schemas.Product)
 def get_product(product_id: int, db: Session = Depends(get_db)):

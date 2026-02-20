@@ -12,12 +12,9 @@ class Product(Base):
     __tablename__ = "products"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=False, index=True)
-    description = Column(String, default="")
-    price = Column(Float, nullable=False)
-    stock = Column(Integer, default=0)
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
-
+    name = Column(String, index=True)
+    price = Column(Float)  # Fixed: SQLAlchemy uses 'Float' with a capital 'F'
+    image_url = Column(String, nullable=True)
 
 class User(Base):
     """Represents a user account.

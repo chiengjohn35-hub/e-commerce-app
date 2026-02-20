@@ -4,9 +4,8 @@ from pydantic import BaseModel
 
 class ProductBase(BaseModel):
     name: str
-    description: Optional[str] = ""
     price: float
-    stock: int = 0
+    image_url: Optional[str] = None
 
 
 class ProductCreate(ProductBase):
@@ -65,6 +64,14 @@ class Order(BaseModel):
     items: List[OrderItem] = []
     model_config = {"from_attributes": True}
 
+# Add this to app/schemas.py
+class OrderReference(BaseModel):
+    order_id: int
+
+class StripeSessionResponse(BaseModel):
+    checkout_url: str
+
+
 
 class PaymentCreate(BaseModel):
     order_id: int
@@ -102,11 +109,3 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     email: Optional[str] = None
 
-
-class PaginatedProducts(BaseModel):
-    items: List[Product]
-    total: int
-    page: int
-    per_page: int
-
-    model_config = {"from_attributes": True}

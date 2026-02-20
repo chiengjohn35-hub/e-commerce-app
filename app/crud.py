@@ -10,7 +10,7 @@ from datetime import timedelta, datetime
 
 def create_product(db: Session, product_in: schemas.ProductCreate) -> models.Product:
     # Create and persist a Product from the Pydantic input schema
-    p = models.Product(name=product_in.name, description=product_in.description, price=product_in.price, stock=product_in.stock)
+    p = models.Product(name=product_in.name, price=product_in.price, image_url=product_in.image_url)
     db.add(p)
     db.commit()
     db.refresh(p)

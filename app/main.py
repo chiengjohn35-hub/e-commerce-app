@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+import os
+import uuid
+from fastapi.staticfiles import StaticFiles
 from .db import init_db
 from .routers import products, cart, orders, payments, auth
 
@@ -23,6 +25,23 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+UPLOAD_DIR = os.path.join(STATIC_DIR, "uploads")
+
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+
+
+
+# Mount the static directory
+# This makes files in /static accessible at http://localhost:8000/static
+app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+
+
 
 # Mount routers for modular endpoints
 app.include_router(products.router, prefix="/products", tags=["products"])

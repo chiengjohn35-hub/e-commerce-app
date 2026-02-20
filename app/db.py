@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 # Database URL for local development using SQLite. Change to use PostgreSQL in production.
-SQLALCHEMY_DATABASE_URL = "sqlite:///./app.db"
+SQLALCHEMY_DATABASE_URL = "sqlite:///./app2.db"
 
 # Create the SQLAlchemy engine. For SQLite we need check_same_thread=False for multithreading.
 engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
