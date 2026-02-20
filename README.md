@@ -1,12 +1,6 @@
 # 🛍️ E‑Store — Modern Full‑Stack E‑Commerce Application
 
-![React](https://img.shields.io)
-![FastAPI](https://img.shields.io)
-![Stripe](https://img.shields.io)
-![Docker](https://img.shields.io)
-![Render](https://img.shields.io)
-![Vercel](https://img.shields.io)
-![License](https://img.shields.io)
+![React](https://img.shields.io) ![FastAPI](https://img.shields.io) ![Stripe](https://img.shields.io) ![Docker](https://img.shields.io) ![Render](https://img.shields.io) ![Vercel](https://img.shields.io) ![License](https://img.shields.io)
 
 A clean, production‑ready e‑commerce web application built with **React**, **FastAPI**, **Stripe**, **Docker**, **Render**, and **Vercel**.  
 This project demonstrates real‑world full‑stack engineering: authentication, cart logic, orders, payments, and a fully containerized backend.
