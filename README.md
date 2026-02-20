@@ -16,7 +16,6 @@ This project demonstrates real‑world full‑stack engineering: authentication,
 ## 🚀 Live Demo
 
 - **Frontend (Vercel):** [e-commerce-store-wine-one.vercel.app](https://e-commerce-store-wine-one.vercel.app)
-- **Backend API (Render):** [ecommerce-fastapi-backend.onrender.com/docs](https://ecommerce-fastapi-backend.onrender.com/docs)
 
 ---
 
@@ -70,4 +69,37 @@ frontend/
 │   ├── api.js       # Axios Configuration
 │   └── App.jsx      # Router & Routes
 └── vercel.json      # SPA Routing Fix for 404s
+
+
+
+---
+
+# ☁️ Deployment
+
+### Backend (Render)
+- Uses Dockerfile + render.yaml  
+- Add environment variables in Render dashboard  
+- Auto‑deploys on GitHub push  
+
+### Frontend (Vercel)
+- Connect GitHub repo  
+- Auto‑deploy on push  
+- Set `VITE_API_URL` to your backend URL  
+
+---
+
+# 🧪 API Documentation
+
+FastAPI automatically generates:
+
+
+
+
+---
+
+# 🙌 Author
+
+Built by **Chieng John** — Backend & AI Engineer  
+Focused on clean architecture, secure deployments.
+
 
