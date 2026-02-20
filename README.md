@@ -95,6 +95,13 @@ frontend/
 FastAPI automatically generates:
 
 
+## 📸 Screenshots
+
+| Home Page | Shopping Cart |
+| :---: | :---: |
+| <img src="frontend/images/home.jpeg" width="300" /> | <img src="frontend/images/cart.jpeg" width="300" /> |
+
+
 
 
 ---
