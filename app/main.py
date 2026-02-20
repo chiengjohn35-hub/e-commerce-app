@@ -16,7 +16,8 @@ origins = [
     "http://localhost:5173",
     "http://127.0.0.1",
     "http://127.0.0.1:5173",
-    "https://e-commerce-app-251f.onrender.com"
+    "https://e-commerce-app-251f.onrender.com",
+    "https://e-commerce-store-wine-one.vercel.app"
 ]
 
 app.add_middleware(
