@@ -1,14 +1,15 @@
 # 🛍️ E‑Store — Modern Full‑Stack E‑Commerce Application
 
-<p align="left">
-  <img src="https://img.shields.io" alt="React">
-  <img src="https://img.shields.io" alt="FastAPI">
-  <img src="https://img.shields.io" alt="Stripe">
-  <img src="https://img.shields.io" alt="Docker">
-  <img src="https://img.shields.io" alt="Render">
-  <img src="https://img.shields.io" alt="Vercel">
-  <img src="https://img.shields.io" alt="License">
-</p>
+# 🛍️ E‑Store — Modern Full‑Stack E‑Commerce Application
+
+![React](https://img.shields.io/badge/Frontend-React-61DAFB?logo=react&logoColor=white)
+![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi&logoColor=white)
+![Stripe](https://img.shields.io/badge/Payments-Stripe-635BFF?logo=stripe&logoColor=white)
+![Docker](https://img.shields.io/badge/Container-Docker-2496ED?logo=docker&logoColor=white)
+![Render](https://img.shields.io/badge/Hosting-Render-46E3B7?logo=render&logoColor=white)
+![Vercel](https://img.shields.io/badge/Frontend%20Hosting-Vercel-000000?logo=vercel&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
+
 
 A clean, production‑ready e‑commerce web application built with **React**, **FastAPI**, **Stripe**, **Docker**, **Render**, and **Vercel**.  
 This project demonstrates real‑world full‑stack engineering: authentication, cart logic, orders, payments, and a fully containerized backend.
