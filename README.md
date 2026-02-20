@@ -1,4 +1,3 @@
-# 🛍️ E‑Store — Modern Full‑Stack E‑Commerce Application
 
 # 🛍️ E‑Store — Modern Full‑Stack E‑Commerce Application
 
